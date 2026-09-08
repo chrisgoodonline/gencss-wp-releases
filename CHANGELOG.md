@@ -3,6 +3,36 @@
 Version history for the WordPress plugin. Download any release from the
 [Releases page](https://github.com/chrisgoodonline/gencss-wp-releases/releases).
 
+## [0.5.33] — 2026-09-08
+
+Based on GenCSS v1.1.0.
+
+### Added
+- **Your own colour palettes.** The six palettes were fixed; you can now add more
+  with the **+ Add palette** button under the palette list. A new palette is named
+  in place and gets everything a built-in gets — the five shades, the transparency
+  variants, an optional 50–950 tonal scale, and a place in every token dropdown.
+  Renaming one updates any colour assignment pointing at it; deleting one clears
+  those assignments rather than leaving them pointing at a colour that no longer
+  exists, and tells you how many it will clear first
+- **Your own colour assignments.** Layer 2 tokens can be added with **+ Add
+  token**, named in place and mapped to any primitive through the same control the
+  built-in tokens use. Previously the only place for a custom token was the USER
+  block, which meant it sat outside the generated block, had no swatch, and could
+  not be chosen in the light and dark scheme dropdowns. Custom tokens now appear
+  there like any other
+
+### Upgrading
+Existing stylesheets regenerate byte-for-byte identically — palettes and tokens
+you have not added cost you nothing.
+
+Palettes and tokens you do add are stored the same way your six built-in palettes
+always have been: in the configuration comment at the top of the colour primitives
+block. Keep that comment intact — it is the only record of a custom palette's
+colour, so deleting it by hand removes the palette.
+
+---
+
 ## [0.5.31] — 2026-09-02
 
 Based on GenCSS v1.0.8.
