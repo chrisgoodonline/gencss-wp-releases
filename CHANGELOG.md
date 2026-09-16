@@ -3,6 +3,47 @@
 Version history for the WordPress plugin. Download any release from the
 [Releases page](https://github.com/chrisgoodonline/gencss-wp-releases/releases).
 
+## [0.5.34] — 2026-09-16
+
+Based on GenCSS v1.2.0. Everything here is opt-in — open a stylesheet written
+before this release, save it, and you get the same file back.
+
+### Added
+- **Content section.** Tables, blockquotes, code and `pre`, horizontal rules,
+  figures and captions, definition lists, and inline elements (`sub`, `sup`,
+  `abbr`, `mark`, `small`, `kbd`), each with its own controls. Browsers fell back
+  to their own defaults for all of these, which ignore every token you have set —
+  so a page with a table or a code block stopped looking like the rest of the
+  site. Table rows respond to hover, and both the hover and striped colours are
+  yours to set
+- **Lists section.** Markers for `ul` and `ol`, marker position and colour,
+  indent and spacing between items — plus an option that strips markers from
+  lists used for layout, which is why bullets kept appearing on grids
+- **Header section.** Publishes `--header-height` so anything needing to clear
+  the header references one value, with options for sticky, min-height and
+  padding. Setting the padding to `0` is the fix for a builder that forces its
+  own `<header>` and pads it as well
+- **A token picker on every field that takes a token.** A small button opens the
+  tokens relevant to that field — colours for a colour field, the spacing scale
+  for a spacing field — each with a swatch and the value it resolves to. The
+  colour assignment and scheme dropdowns are now fields with the same picker, so
+  they show colours rather than a list of names
+- **Border width tokens** (`--border-width-light`, `-normal`, `-heavy`) and a
+  **smaller spacing step** (`--space-2xs`), for the places `xs` is still too
+  generous — compact form fields especially
+- **Modern form controls**: fields that size to their content, checkboxes and
+  radios that take your accent colour and can be sized, spaced and given a focus
+  ring, styled `<select>` dropdowns, and spacing around fields rather than only
+  inside them
+- **Text box trimming**, so the gap a spacing token asks for is the gap you see
+  rather than that gap plus invisible leading
+
+### Changed
+- Palettes and tokens you add now appear in the preview
+- The **Documentation** button opens the guides on gencss.co.uk
+
+---
+
 ## [0.5.33] — 2026-09-08
 
 Based on GenCSS v1.1.0.
