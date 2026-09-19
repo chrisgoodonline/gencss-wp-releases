@@ -3,6 +3,40 @@
 Version history for the WordPress plugin. Download any release from the
 [Releases page](https://github.com/chrisgoodonline/gencss-wp-releases/releases).
 
+## [0.5.35] — 2026-09-19
+
+Based on GenCSS v1.2.1. A fix-only release, but the first fix is the reason to
+install it: it is the one that stops two versions of GenCSS destroying each
+other's work, and the plugin is half of how that happens.
+
+### Fixed
+- **Sections written by a newer version of GenCSS are no longer destroyed.**
+  GenCSS rebuilt your stylesheet from the list of sections the running version
+  knew about, so anything it did not recognise was dropped on save — including
+  that section's USER block and any CSS you had written there. The plugin ships
+  its own copy of GenCSS and is versioned separately from the desktop app, and
+  neither updates itself, so one stylesheet edited by two versions is the
+  ordinary case here rather than an unlucky one. Unrecognised sections are now
+  carried through untouched, in the position they were found
+- **Tonal colours no longer disappear in browsers without `light-dark()`.** The
+  `ld` and `on-ld` tokens were written only as `light-dark(…)`, which such a
+  browser accepts where the token is declared and fails where it is used — so
+  the token resolved to nothing and a background reading it came out
+  transparent. A visitor who had deliberately set a light or dark preference got
+  missing colours rather than merely the wrong ones. The light-mode step is now
+  declared plainly first, with the paired form applied only where it is
+  supported
+- **The Documentation button works.** `docs-panel.js` was packaged but never
+  enqueued, and the app wires the drawer with a `typeof` check — so the file
+  being absent was not an error, just a button that did nothing when clicked. In
+  WordPress it opens the guides at gencss.co.uk rather than a drawer, since the
+  plugin has no local copy of them to read
+
+### Notes on upgrading
+Stylesheets with no tonal palette are unchanged. Ones using a tonal palette gain
+a plain declaration per token and an `@supports` block; a modern browser renders
+them identically, and older ones now show a colour instead of none.
+
 ## [0.5.34] — 2026-09-16
 
 Based on GenCSS v1.2.0. Everything here is opt-in — open a stylesheet written
