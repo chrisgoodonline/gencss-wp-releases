@@ -3,6 +3,21 @@
 Version history for the WordPress plugin. Download any release from the
 [Releases page](https://github.com/chrisgoodonline/gencss-wp-releases/releases).
 
+## [0.5.36] — 2026-09-23
+
+Based on GenCSS v1.2.2. A fix-only release.
+
+### Fixed
+- **Stylesheets from the GenCSS betas no longer lose spacing and font weights
+  when saved.** Before GenCSS 1.0.0 the generator wrote a numbered spacing scale
+  (`--space-1` to `--space-25`) and named weights (`--weight-xs` to
+  `--weight-xl`). Later versions renamed those, and saving an old stylesheet
+  rebuilt it without them while keeping the tokens that pointed at them — so
+  padding, gaps and weights resolved to nothing, with no error to say why.
+  Anything an old stylesheet defines that the current version no longer writes
+  is now kept, at the end of the section it came from, marked as carried forward.
+  Stylesheets written by 1.0.0 or later save exactly as before
+
 ## [0.5.35] — 2026-09-19
 
 Based on GenCSS v1.2.1. A fix-only release, but the first fix is the reason to
