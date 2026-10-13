@@ -3,6 +3,49 @@
 Version history for the WordPress plugin. Download any release from the
 [Releases page](https://github.com/chrisgoodonline/gencss-wp-releases/releases).
 
+## [0.5.37] — 2026-10-13
+
+Based on GenCSS v1.2.3. Mostly fixes; the first two lose work silently, so it is
+worth installing even though little is new.
+
+### Fixed
+- **Button and link variants no longer disappear when their custom CSS contains
+  a comment.** A `/* … */` in a variant's Custom CSS ended its configuration
+  comment early, so the variants reset to a single Primary on the next load and
+  the next save wrote that. The same applied to the Forms, Cards, Accessibility
+  and Colour scheme settings. A stylesheet already damaged this way is recovered
+  when it is opened
+- **Anything written in `USER: BUTTONS` was deleted on every save.** It is now
+  kept like every other USER block
+- **Comments inside a USER block were deleted on every save, in every section.**
+  Only GenCSS's own section headers are cleaned up now
+- **A variant stored without a Filled or Alt half no longer stops the Variants
+  tab opening**
+- **A variant can no longer be given a name that collides with another's Alt
+  class** (`primary-outline` while `primary` exists). Duplicate names are
+  refused too
+- **GenCSS no longer restyles the Bricks builder's own panels.** The canvas
+  injection was keyed on the `?bricks` URL parameter, which the builder's
+  top-level window carries as well as the canvas iframe, so the whole stylesheet
+  — element selectors for form fields, list markers and the rest — was applied
+  to Bricks's interface. It now injects only inside the canvas iframe. The
+  sitewide link tag also returns early in the admin, as a guard against any
+  screen that fires `wp_head`
+
+### Added
+- **Skip buttons**, a setting on the Links panel's Global tab. A link styled as
+  a button (`<a class="btn">`) took the link hover and visited colours and a
+  transparent background on hover. With the setting on, the link state rules
+  skip `.btn` and `btn--*`. It is on for new stylesheets and off for existing
+  ones, which save exactly as before until you tick it
+- A **Buttons and links** guide in the documentation drawer
+
+### Notes on upgrading
+Stylesheets that did not hit these bugs regenerate byte for byte as before.
+Where one did, the fixes stop further loss but cannot restore what earlier saves
+removed — a USER block or comment deleted by a previous version is gone unless it
+is in version control or a backup.
+
 ## [0.5.36] — 2026-09-23
 
 Based on GenCSS v1.2.2. A fix-only release.
